@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerOfAum – Monetization Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone-50: #fafaf9;
+            --stone-100: #f5f5f4;
+            --stone-200: #e7e5e4;
+            --stone-300: #d6d3d1;
+            --stone-400: #a8a29e;
+            --stone-600: #57534e;
+            --stone-800: #292524;
+            --stone-900: #1c1917;
+            --gold: #c4a962;
+            --gold-muted: #a89057;
+            
+            --serif: 'Cormorant Garamond', serif;
+            --mono: 'IBM Plex Mono', monospace;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--serif);
+            background: var(--stone-50);
+            color: var(--stone-900);
+            line-height: 1.6;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .wide-container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 120px 24px 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(196, 169, 98, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(41, 37, 36, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--stone-600);
+            margin-bottom: 80px;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h1 {
+            font-size: clamp(48px, 8vw, 84px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+            color: var(--stone-900);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--stone-600);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.5;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 48px;
+        }
+        
+        .btn {
+            font-family: var(--mono);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            padding: 16px 32px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            background: var(--stone-900);
+            color: var(--stone-50);
+        }
+        
+        .btn-primary:hover {
+            background: var(--stone-800);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--stone-600);
+            border: 1px solid var(--stone-300);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--stone-900);
+            color: var(--stone-900);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        section:nth-child(even) {
+            background: var(--stone-100);
+        }
+        
+        .section-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-muted);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        h2 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+        
+        .section-intro {
+            font-size: clamp(20px, 2.5vw, 26px);
+            color: var(--stone-600);
+            max-width: 680px;
+            margin-bottom: 48px;
+            line-height: 1.5;
+        }
+        
+        p {
+            font-size: 18px;
+            color: var(--stone-600);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            gap: 48px;
+            margin-top: 64px;
+        }
+        
+        .problem-item {
+            border-left: 1px solid var(--stone-300);
+            padding-left: 32px;
+        }
+        
+        .problem-item h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--stone-900);
+        }
+        
+        /* Approach Section */
+        .approach-steps {
+            margin-top: 64px;
+            display: grid;
+            gap: 56px;
+        }
+        
+        .step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        
+        .step-number {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--gold-muted);
+            padding-top: 4px;
+        }
+        
+        .step-content h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--stone-900);
+        }
+        
+        .step-content p {
+            font-size: 18px;
+            color: var(--stone-600);
+        }
+        
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 24px;
+            margin-top: 64px;
+            padding: 48px;
+            background: var(--stone-50);
+            border: 1px solid var(--stone-200);
+        }
+        
+        .principle {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--stone-600);
+            text-align: center;
+            padding: 16px;
+        }
+        
+        /* Comparison Table */
+        .comparison {
+            margin-top: 64px;
+            overflow-x: auto;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .comparison-table th {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: left;
+            padding: 24px;
+            font-weight: 500;
+            background: var(--stone-900);
+            color: var(--stone-100);
+        }
+        
+        .comparison-table td {
+            padding: 24px;
+            border-bottom: 1px solid var(--stone-200);
+            font-size: 17px;
+            background: var(--stone-50);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: 400;
+            color: var(--stone-900);
+        }
+        
+        .comparison-table td:not(:first-child) {
+            color: var(--stone-600);
+        }
+        
+        /* Who Section */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-top: 64px;
+        }
+        
+        .who-column h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--stone-900);
+        }
+        
+        .who-column.for h3 {
+            color: var(--gold-muted);
+        }
+        
+        .who-column.not-for h3 {
+            color: var(--stone-400);
+        }
+        
+        .who-list {
+            list-style: none;
+        }
+        
+        .who-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--stone-200);
+            font-size: 18px;
+        }
+        
+        .who-column.for .who-list li {
+            color: var(--stone-900);
+        }
+        
+        .who-column.not-for .who-list li {
+            color: var(--stone-400);
+        }
+        
+        .who-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Trust Section */
+        .trust-grid {
+            display: grid;
+            gap: 48px;
+            margin-top: 64px;
+        }
+        
+        .trust-item {
+            padding: 40px;
+            border: 1px solid var(--stone-200);
+            background: var(--stone-50);
+        }
+        
+        .trust-item h3 {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold-muted);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .trust-item p {
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        /* Start Section */
+        .start-steps {
+            margin-top: 64px;
+            counter-reset: step-counter;
+        }
+        
+        .start-step {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--stone-200);
+            counter-increment: step-counter;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 32px;
+        }
+        
+        .start-step:last-child {
+            border-bottom: none;
+        }
+        
+        .start-step::before {
+            content: counter(step-counter);
+            font-family: var(--mono);
+            font-size: 18px;
+            color: var(--gold-muted);
+        }
+        
+        .start-step p {
+            font-size: 20px;
+            margin: 0;
+            color: var(--stone-900);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 80px 24px 40px;
+            text-align: center;
+            background: var(--stone-900);
+            color: var(--stone-400);
+        }
+        
+        .footer-logo {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            color: var(--stone-500);
+            font-weight: 500;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            color: var(--stone-500);
+            margin-bottom: 8px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 80px 24px 60px;
+            }
+            
+            h1 {
+                font-size: 48px;
+            }
+            
+            h2 {
+                font-size: 36px;
+            }
+            
+            .who-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .comparison-table {
+                font-size: 14px;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 16px;
+            }
+            
+            .step {
+                grid-template-columns: 60px 1fr;
+                gap: 20px;
+            }
+            
+            .principles {
+                grid-template-columns: 1fr;
+                padding: 32px;
+            }
+        }
+        
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">PowerOfAum</div>
+            <h1>Attribution-based<br>monetization infrastructure</h1>
+            <p class="hero-subtitle">
+                PowerOfAum provides a neutral way to attribute and track value-sharing across networks.
+                It is designed to support partners who introduce useful products or services without promotion or persuasion.
+            </p>
+            <div class="cta-group">
+                <a href="#start" class="btn btn-primary">Request information</a>
+                <a href="#approach" class="btn btn-secondary">View process</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <div class="section-label">Context</div>
+            <h2>Monetization often conflicts with trust.</h2>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <h3>Promotion changes behavior</h3>
+                    <p>When content becomes transactional, audiences often perceive a shift in intent.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>Value-sharing is hard to measure</h3>
+                    <p>Most systems do not account for indirect or long-term influence across networks.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>Attribution is usually limited</h3>
+                    <p>Credit is typically assigned only to the final step in a transaction rather than the broader chain of introduction.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>Existing tools prioritize conversion</h3>
+                    <p>Many platforms are optimized for sales activity rather than informational or trust-based distribution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section id="approach">
+        <div class="container">
+            <div class="section-label">Method</div>
+            <h2>Designed around attribution, not persuasion.</h2>
+            <p class="section-intro">
+                PowerOfAum is structured as background infrastructure. It records how value moves through a network
+                when something useful is shared voluntarily.
+            </p>
+            
+            <div class="approach-steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>A resource is shared</h3>
+                        <p>A participant shares access to a product or service they consider useful.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Recipients decide independently</h3>
+                        <p>There is no requirement to purchase or promote. Engagement remains optional.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Sharing may continue organically</h3>
+                        <p>If recipients find value, they may choose to pass it along further.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Attribution is recorded</h3>
+                        <p>When transactions occur, attribution follows the path of introduction.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="principles">
+                <div class="principle">No promotion scripts</div>
+                <div class="principle">No pressure mechanics</div>
+                <div class="principle">No audience targeting</div>
+                <div class="principle">No behavioral incentives</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Difference Section -->
+    <section id="difference">
+        <div class="wide-container">
+            <div class="section-label">Model</div>
+            <h2>Structural rather than promotional.</h2>
+            
+            <div class="comparison">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Promotional systems</th>
+                            <th>PowerOfAum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary focus</td>
+                            <td>Conversion and visibility</td>
+                            <td>Attribution and tracking</td>
+                        </tr>
+                        <tr>
+                            <td>User role</td>
+                            <td>Promoter or affiliate</td>
+                            <td>Value introducer</td>
+                        </tr>
+                        <tr>
+                            <td>Audience experience</td>
+                            <td>Call-to-action driven</td>
+                            <td>Informational and optional</td>
+                        </tr>
+                        <tr>
+                            <td>Measurement</td>
+                            <td>Last-click based</td>
+                            <td>Network-based attribution</td>
+                        </tr>
+                        <tr>
+                            <td>Design intent</td>
+                            <td>Maximize response</td>
+                            <td>Preserve trust context</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section id="trust">
+        <div class="container">
+            <div class="section-label">Positioning</div>
+            <h2>Built as infrastructure.</h2>
+            
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h3>Background operation</h3>
+                    <p>No visible branding is required on shared links or posts.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Product-linked activity</h3>
+                    <p>Transactions relate to actual products or services provided by third parties.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Defined attribution logic</h3>
+                    <p>Credit follows a recorded chain of introduction rather than promotional effort.</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Transparent structure</h3>
+                    <p>Participation terms and attribution behavior are disclosed clearly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Start Section -->
+    <section id="start">
+        <div class="container">
+            <div class="section-label">Access</div>
+            <h2>Participation is by invitation.</h2>
+            
+            <div class="start-steps">
+                <div class="start-step">
+                    <p>Submit a request for access</p>
+                </div>
+                <div class="start-step">
+                    <p>Review participation terms</p>
+                </div>
+                <div class="start-step">
+                    <p>Receive an access link if approved</p>
+                </div>
+                <div class="start-step">
+                    <p>Share resources when relevant</p>
+                </div>
+            </div>
+            
+            <div class="cta-group" style="margin-top: 64px;">
+                <a href="#" class="btn btn-primary">Request details</a>
+                <a href="#approach" class="btn btn-secondary">Read methodology</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">PowerOfAum</div>
+        <p class="footer-text">Attribution-based monetization infrastructure.</p>
+        <p class="footer-text">© 2026 PowerOfAum. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
