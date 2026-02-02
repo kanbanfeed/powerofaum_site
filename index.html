@@ -442,7 +442,7 @@
         
         .footer-logo {
             font-family: var(--mono);
-            font-size: 11px;
+            font-size: 20px;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 32px;
@@ -451,7 +451,7 @@
         }
         
         .footer-text {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--stone-500);
             margin-bottom: 8px;
         }
@@ -511,6 +511,17 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .fine-print p {
+            max-width: 860px;
+            margin: 20px auto 0;
+            padding: 0 24px;
+            font-size: 12px;
+            line-height: 1.2;
+            color: var(--stone-400) !important;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -710,10 +721,19 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">PowerOfAum</div>
-        <p class="footer-text">Attribution-based monetization infrastructure.</p>
-        <p class="footer-text">© 2026 PowerOfAum. All rights reserved.</p>
-    </footer>
+    <div class="footer-logo">PowerOfAum</div>
+    <p class="footer-text">Attribution-based monetization infrastructure.</p>
+
+    <div class="fine-print">
+        <p>Monetization, where applicable, depends on external products and voluntary actions.</p>
+        <p>Attribution records context only; any payouts are externally determined and not guaranteed.</p>
+        <p>Access is limited to maintain relevance and integrity of the process.</p>
+        <p>PowerOfAum does not guarantee income, payouts, or financial outcomes and is not an investment offering.</p>
+    </div>
+
+    <p class="footer-text">© 2026 PowerOfAum. All rights reserved.</p>
+</footer>
+
 </body>
 
 </html>
