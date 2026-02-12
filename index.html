@@ -527,13 +527,39 @@
             margin-top: 20px;
             text-align: center;
         }
+        .logo-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .logo-square {
+        width: 200px;
+        height: 150px;
+        object-fit: contain;
+        display: block;
+        }
+        .logo-squares {
+        width: 90px;
+        height: 150px;
+        object-fit: contain;
+        display: block;
+        margin-top: -30px;
+        }
+
     </style>
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="logo">PowerOfAum</div>
+            <div class="logo-image">
+            <img 
+                src="/assets/powerofaum-logo.jpeg" 
+                alt="Power of AUM" 
+                class="logo-square">
+            </div>
+
             <h1>Attribution-based<br>monetization infrastructure</h1>
             <p class="hero-subtitle">
                 PowerOfAum provides a neutral way to attribute and track value-sharing across networks.
@@ -731,6 +757,12 @@
     <!-- Footer -->
     <footer>
     <div class="footer-logo">PowerOfAum</div>
+    <div class="logo-image">
+        <img 
+        src="/assets/powerofaum-logo.jpeg" 
+        alt="Power of AUM" 
+        class="logo-squares">
+    </div>
     <p class="footer-text">Attribution-based monetization infrastructure.</p>
 
     <div class="fine-print">
